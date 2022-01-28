@@ -106,7 +106,10 @@ export default function BarcodeScannerScreen({
     if (barcodeData && !searchingBarcode) {
       return (
         <VStack justifyContent="space-between" space={6} mt={4}>
-          <ProductInfoScreen barcodeData={barcodeData} />
+          <ProductInfoScreen
+            barcodeData={barcodeData}
+            addProduct={(newProduct: any) => addProduct(newProduct)}
+          />
           <Button onPress={() => setScanned(false)}>Scan Again</Button>
         </VStack>
       );

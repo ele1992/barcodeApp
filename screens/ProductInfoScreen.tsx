@@ -24,6 +24,7 @@ const ProductInfoScreen = (props: any) => {
     certificates,
     allergies,
   } = props.barcodeData;
+
   const allergiesList = () => {
     if (allergies) {
       return (
