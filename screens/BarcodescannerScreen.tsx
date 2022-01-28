@@ -21,7 +21,11 @@ import {
 } from "native-base";
 import ProductInfoScreen from "./ProductInfoScreen";
 
-export default function BarcodeScannerScreen() {
+export default function BarcodeScannerScreen({
+  addProduct,
+}: {
+  addProduct: (newProduct: any) => void;
+}) {
   const [hasPermission, setHasPermission] = useState(false);
   const [scanned, setScanned] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
