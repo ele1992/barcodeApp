@@ -22,7 +22,6 @@ export default function TabOneScreen({ products }: FridgeProps) {
 				data={products}
 				renderItem={({ item, index }) => (
 					<Box
-						key={index}
 						borderBottomWidth={"6"}
 						borderColor={"warmGray.200"}
 						backgroundColor={"light.50"}
@@ -40,6 +39,7 @@ export default function TabOneScreen({ products }: FridgeProps) {
 						<Text fontSize={"sm"}>{item.expiration}</Text>
 					</Box>
 				)}
+				keyExtractor={(item) => item.name}
 			/>
 		</Box>
 	)
