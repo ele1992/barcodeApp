@@ -22,7 +22,6 @@ export default function ModalScreen({
   newProduct?: any;
   route: any;
 }) {
-  console.log(route);
   const [name, setName] = useState(route?.params?.newProduct?.name || "");
   const [expiration, setExpiration] = useState("");
   const [amount, setAmount] = useState("");
