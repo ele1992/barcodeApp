@@ -1,22 +1,48 @@
 import { StyleSheet } from "react-native"
-import { NativeBaseProvider, Box } from "native-base"
-import EditScreenInfo from "../components/EditScreenInfo"
-import { Text, View } from "../components/Themed"
+import { useState } from "react"
+import {
+	Box,
+	Heading,
+	FlatList,
+	Text,
+	VStack,
+	HStack,
+	Spacer
+} from "native-base"
 import { RootTabScreenProps } from "../types"
 
 export default function TabOneScreen({
-	navigation
-}: RootTabScreenProps<"Fridge">) {
+	navigation,
+	products
+}: RootTabScreenProps) {
 	return (
-		<View style={styles.container}>
-			<Text style={styles.title}>BARCODE SCANNING COOL</Text>
-			<View
-				style={styles.separator}
-				lightColor="#eee"
-				darkColor="rgba(255,255,255,0.1)"
+		<Box>
+			<Heading fontSize={"lg"} p="4" pb="3">
+				Produce
+			</Heading>
+			<FlatList
+				data={products}
+				renderItem={({ item }) => (
+					<Box
+						borderBottomWidth={"6"}
+						borderColor={"warmGray.200"}
+						backgroundColor={"light.50"}
+						m={1}
+						pl="5"
+						pr="5"
+						py="2"
+						borderRadius={5}
+					>
+						<HStack space={3} justifyContent={"space-between"}>
+							<Text>{item.name}</Text>
+							<Text>{item.amount}</Text>
+						</HStack>
+						<Spacer />
+						<Text fontSize={"sm"}>{item.expiration}</Text>
+					</Box>
+				)}
 			/>
-			<EditScreenInfo path="/screens/TabOneScreen.tsx" />
-		</View>
+		</Box>
 	)
 }
 

@@ -22,7 +22,7 @@ const linking: LinkingOptions<RootStackParamList> = {
 					}
 				}
 			},
-			Modal: "modal",
+			Add: "modal",
 			NotFound: "*"
 		}
 	}

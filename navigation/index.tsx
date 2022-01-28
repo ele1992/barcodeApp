@@ -29,15 +29,16 @@ import {
 import LinkingConfiguration from "./LinkingConfiguration"
 
 export default function Navigation({
-	colorScheme
+	colorScheme,
+	addProduct,
+	products
 }: {
+	addProduct: (newProduct: any) => void
+	products: any[]
 	colorScheme: ColorSchemeName
 }) {
 	return (
-		<NavigationContainer
-			linking={LinkingConfiguration}
-			theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
-		>
+		<NavigationContainer linking={LinkingConfiguration} theme={DefaultTheme}>
 			<RootNavigator />
 		</NavigationContainer>
 	)
@@ -64,7 +65,7 @@ function RootNavigator() {
 				options={{ title: "Oops!" }}
 			/>
 			<Stack.Group screenOptions={{ presentation: "modal" }}>
-				<Stack.Screen name="Modal" component={ModalScreen} />
+				<Stack.Screen name="Add" component={ModalScreen} />
 			</Stack.Group>
 		</Stack.Navigator>
 	)
@@ -78,7 +79,7 @@ const BottomTab = createBottomTabNavigator<RootTabParamList>()
 
 function BottomTabNavigator() {
 	const colorScheme = useColorScheme()
-
+	const fridgeComponent = () => <TabOneScreen products={products} />
 	return (
 		<BottomTab.Navigator
 			initialRouteName="Fridge"
@@ -88,20 +89,20 @@ function BottomTabNavigator() {
 		>
 			<BottomTab.Screen
 				name="Fridge"
-				component={TabOneScreen}
+				component={fridgeComponent}
 				options={({ navigation }: RootTabScreenProps<"Fridge">) => ({
 					tabBarIcon: ({ color }) => <TabBarIcon name="apple" color={color} />,
 					headerRight: () => (
 						<Pressable
-							onPress={() => navigation.navigate("Modal")}
+							onPress={() => navigation.navigate("Add")}
 							style={({ pressed }) => ({
 								opacity: pressed ? 0.5 : 1
 							})}
 						>
 							<FontAwesome
-								name="info-circle"
-								size={25}
-								color={Colors[colorScheme].text}
+								name="plus-square"
+								size={50}
+								color="#9AF"
 								style={{ marginRight: 15 }}
 							/>
 						</Pressable>
