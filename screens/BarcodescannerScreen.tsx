@@ -20,10 +20,13 @@ import {
   Spacer,
 } from "native-base";
 import ProductInfoScreen from "./ProductInfoScreen";
+import { RootTabScreenProps } from "../types";
 
 export default function BarcodeScannerScreen({
+  navigation,
   addProduct,
 }: {
+  navigation: any;
   addProduct: (newProduct: any) => void;
 }) {
   const [hasPermission, setHasPermission] = useState(false);
@@ -67,6 +70,10 @@ export default function BarcodeScannerScreen({
     }
   };
 
+  const handleAddProduct = (newProduct: any) => {
+    navigation.navigate("Add", { newProduct });
+  };
+
   interface BarcodeInput {
     type: string;
     data: string;
@@ -108,7 +115,8 @@ export default function BarcodeScannerScreen({
         <VStack justifyContent="space-between" space={6} mt={4}>
           <ProductInfoScreen
             barcodeData={barcodeData}
-            addProduct={(newProduct: any) => addProduct(newProduct)}
+            addProduct={(newProduct: any) => handleAddProduct(newProduct)}
+            navigation={navigation}
           />
           <Button onPress={() => setScanned(false)}>Scan Again</Button>
         </VStack>

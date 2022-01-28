@@ -11,7 +11,8 @@ import {
   Badge,
   Button,
 } from "native-base";
-import React from "react";
+import React, { useEffect } from "react";
+import navigation from "../navigation";
 
 const ProductInfoScreen = (props: any) => {
   const {
@@ -24,6 +25,10 @@ const ProductInfoScreen = (props: any) => {
     certificates,
     allergies,
   } = props.barcodeData;
+
+  const handleAddProduct = () => {
+    props.addProduct({ name });
+  };
 
   const allergiesList = () => {
     if (allergies) {
@@ -174,7 +179,7 @@ const ProductInfoScreen = (props: any) => {
             {allergiesList()}
           </VStack>
         </Stack>
-        <Button>Add to fridge</Button>
+        <Button onPress={() => handleAddProduct()}>Add to fridge</Button>
       </Box>
     </Box>
   );

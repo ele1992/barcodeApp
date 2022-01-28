@@ -21,6 +21,8 @@ export type RootStackParamList = {
   Login: undefined;
   Add: undefined;
   NotFound: undefined;
+  BarcodeScanner: any;
+  Modal: undefined;
 };
 
 export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
@@ -28,7 +30,8 @@ export type RootStackScreenProps<Screen extends keyof RootStackParamList> =
 
 export type RootTabParamList = {
   Fridge: any;
-  BarcodeScanner: undefined;
+  BarcodeScanner: any;
+  Modal: undefined;
 };
 
 export type RootTabScreenProps<Screen extends keyof RootTabParamList> =
